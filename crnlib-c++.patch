@@ -1,0 +1,45 @@
+--- crunch/crnlib/crn_sparse_array.h.orig	2014-05-14 19:48:47.133895619 +0200
++++ crunch/crnlib/crn_sparse_array.h	2014-05-14 21:54:04.600405597 +0200
+@@ -355,7 +355,7 @@
+ 
+       inline T* alloc_group(bool nofail = false)
+       {
+-         T* p = static_cast<T*>(alloc_space(N * sizeof(T)));
++         T* p = static_cast<T*>(this->alloc_space(N * sizeof(T)));
+ 
+          if (!p)
+          {
+@@ -365,7 +365,7 @@
+             CRNLIB_FAIL("Out of memory");
+          }
+ 
+-         construct_group(p);
++         this->construct_group(p);
+ 
+          m_num_active_groups++;
+ 
+@@ -379,20 +379,20 @@
+             CRNLIB_ASSERT(m_num_active_groups);
+             m_num_active_groups--;
+ 
+-            destruct_group(p);
++            this->destruct_group(p);
+ 
+-            free_space(p);
++            this->free_space(p);
+          }
+       }
+ 
+       inline void init_default()
+       {
+-         construct_element(reinterpret_cast<T*>(m_default));
++         this->construct_element(reinterpret_cast<T*>(m_default));
+       }
+ 
+       inline void deinit_default()
+       {
+-         destruct_element(reinterpret_cast<T*>(m_default));
++         this->destruct_element(reinterpret_cast<T*>(m_default));
+       }
+    };
+ 
