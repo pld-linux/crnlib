@@ -1,0 +1,25 @@
+--- crunch/crnlib/crn_vector.cpp.orig	2014-05-14 19:48:46.000000000 +0200
++++ crunch/crnlib/crn_vector.cpp	2014-05-24 06:48:23.591922481 +0200
+@@ -22,8 +22,9 @@ namespace crnlib
+          return true;
+ 
+       size_t new_capacity = min_new_capacity;
+-      if ((grow_hint) && (!math::is_power_of_2(new_capacity)))
+-         new_capacity = math::next_pow2(new_capacity);
++      // avoid overload ambiguity (size_t vs uint32=unsigned int or uint64=unsigned long long) by casting to matching type, that will fit size_t
++      if ((grow_hint) && (!math::is_power_of_2(static_cast<ptr_bits_t>(new_capacity))))
++         new_capacity = math::next_pow2(static_cast<ptr_bits_t>(new_capacity));
+ 
+       CRNLIB_ASSERT(new_capacity && (new_capacity > m_capacity));
+ 
+--- crunch/inc/crn_decomp.h.orig	2014-05-14 19:48:47.000000000 +0200
++++ crunch/inc/crn_decomp.h	2014-05-22 20:49:43.321075804 +0200
+@@ -374,7 +374,7 @@ namespace crnd
+ 
+    const uint32 cIntBits = 32U;
+ 
+-#ifdef _WIN64
++#if defined(_WIN64) || defined(__MINGW64__) || defined(_LP64) || defined(__LP64__)
+    typedef uint64 ptr_bits;
+ #else
+    typedef uint32 ptr_bits;
