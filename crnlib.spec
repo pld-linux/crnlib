@@ -3,7 +3,7 @@ Summary:	crunch/crnlib - advanced DXTn texture compression library
 Summary(pl.UTF-8):	crunch/crnlib - zaawansowana biblioteka do kompresji tekstur DXTn
 Name:		crnlib
 Version:	1.04
-Release:	1
+Release:	2
 License:	ZLib
 Group:		Libraries
 #Source0Download: http://code.google.com/p/crunch/downloads/list
