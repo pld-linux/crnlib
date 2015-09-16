@@ -1,3 +1,7 @@
+# TODO
+# - merge/handle crunch-wordlist
+#   file /usr/bin/crunch from install of crnlib-1.04-2.x86_64 conflicts with file from package crunch-wordlist-3.6-0.2.x86_64
+#
 # NOTE: we use "crnlib" because plain "crunch" or "libcrunch" isn't unique project name
 Summary:	crunch/crnlib - advanced DXTn texture compression library
 Summary(pl.UTF-8):	crunch/crnlib - zaawansowana biblioteka do kompresji tekstur DXTn
