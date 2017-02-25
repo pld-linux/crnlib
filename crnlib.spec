@@ -10,8 +10,8 @@ Version:	1.04
 Release:	2
 License:	ZLib
 Group:		Libraries
-#Source0Download: http://code.google.com/p/crunch/downloads/list
-# but no Linux-supporting releases there
+#Source0Download: https://github.com/BinomialLLC/crunch/releases
+# v104 came from old googlecode repo:
 # svn co http://crunch.googlecode.com/svn/tags/v104 crunch
 # rm -rf crunch/bin*
 # tar cJf crunch-104.tar.xz -x .svn crunch
@@ -19,7 +19,7 @@ Source0:	crunch-104.tar.xz
 # Source0-md5:	f92837bba95abf27d6bd9ae0b2b04863
 Patch0:		%{name}-c++.patch
 Patch1:		%{name}-types.patch
-URL:		http://code.google.com/p/crunch/
+URL:		https://github.com/BinomialLLC/crunch
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
