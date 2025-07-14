@@ -61,8 +61,8 @@ Statyczna biblioteka crnlib.
 
 %prep
 %setup -q -n crunch
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 
 %{__sed} -i -e '/g++.*COMPILE_OPTIONS/s/g++/$(CXX)/' crnlib/Makefile
 %{__sed} -i -e '/g++.*LINKER_OPTIONS/s/g++/$(CXXLINK)/' crnlib/Makefile
