@@ -1,0 +1,52 @@
+--- crunch/inc/crn_decomp.h.orig	2026-05-20 22:18:38.182851860 +0200
++++ crunch/inc/crn_decomp.h	2026-05-20 22:18:43.776217072 +0200
+@@ -2819,15 +2819,15 @@
+          *pSize = 0;
+ 
+       if ((!pData) || (data_size < cCRNHeaderMinSize))
+-         return false;
++         return NULL;
+ 
+       crn_header tmp_header;
+       const crn_header* pHeader = crnd_get_header(tmp_header, pData, data_size);
+       if (!pHeader)
+-         return false;
++         return NULL;
+ 
+       if (level_index >= pHeader->m_levels)
+-         return false;
++         return NULL;
+ 
+       uint32 cur_level_ofs = pHeader->m_level_ofs[level_index];
+ 
+--- crunch/crnlib/crnlib.cpp.orig	2026-05-20 22:18:38.185033306 +0200
++++ crunch/crnlib/crnlib.cpp	2026-05-20 22:18:46.406217072 +0200
+@@ -172,7 +172,7 @@
+    if (pActual_bitrate) *pActual_bitrate = 0.0f;
+ 
+    if (!comp_params.check())
+-      return false;
++      return NULL;
+ 
+    crnlib::vector<uint8> crn_file_data;
+    if (!create_compressed_texture(comp_params, crn_file_data, pActual_quality_level, pActual_bitrate))
+@@ -189,7 +189,7 @@
+    if (pActual_bitrate) *pActual_bitrate = 0.0f;
+ 
+    if ((!comp_params.check()) || (!mip_params.check()))
+-      return false;
++      return NULL;
+ 
+    crnlib::vector<uint8> crn_file_data;
+    if (!create_compressed_texture(comp_params, mip_params, crn_file_data, pActual_quality_level, pActual_bitrate))
+--- crunch/crnlib/crn_image_utils.cpp.orig	2026-05-20 22:18:38.187048761 +0200
++++ crunch/crnlib/crn_image_utils.cpp	2026-05-20 22:18:47.919550405 +0200
+@@ -1305,7 +1305,7 @@
+          *pActualComps = 0;
+ 
+          if ((req_comps < 1) || (req_comps > 4))
+-            return false;
++            return NULL;
+ 
+          mipmapped_texture tex;
+ 
